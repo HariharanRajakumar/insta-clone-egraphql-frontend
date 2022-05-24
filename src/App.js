@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Post from './Post';
+import { useQuery } from 'react-query';
+import { gql } from 'graphql-request';
+import { get } from 'e-graphql-client';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Posts from './Posts';
+import New from './New';
 
 function App() {
+  // const {loading,error,data} = useQuery(getAllStory)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <Switch>
+          <Route path="/likes">
+            <Navbar />
+          </Route>
+          <Route path="/">
+            <Navbar />
+            <Posts />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
