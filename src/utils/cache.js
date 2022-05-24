@@ -1,0 +1,1 @@
+export const getCacheKeyForLikesForPostById = (id) => ["likes-for-post",id];
