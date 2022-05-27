@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Route path="/likes/:postId" exact>
-        {/* <Navbar /> */}
+        <Navbar />
         <LikesPageById />
       </Route>
       <Route path="/" exact>

@@ -9,7 +9,7 @@ import {
   HttpLink,
 } from "@apollo/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+import { ReactQueryDevtools } from "react-query/devtools";
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
@@ -17,7 +17,17 @@ const client = new ApolloClient({
   }),
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      refetchOnWindowFocus: false,
+      retry: false,
+      staleTime: Number.POSITIVE_INFINITY,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,5 +35,6 @@ root.render(
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
+    <ReactQueryDevtools />
   </QueryClientProvider>
 );
